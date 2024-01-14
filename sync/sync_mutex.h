@@ -49,8 +49,9 @@ namespace Mechanika
 #else
 			pthread_mutex_t MxPthreadCritSection;
 
-			sem_t *MxSemMutex;
-			bool MxAllocated;
+			bool MxNamed;
+			char *MxMem;
+			Util::UnixSemaphoreWrapper MxPthreadMutex;
 #endif
 
 			volatile ThreadIDType MxOwnerID;

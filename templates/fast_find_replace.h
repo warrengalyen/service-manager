@@ -5,6 +5,7 @@
 #define FAST_FIND_REPLACE_H
 
 #include <cstddef>
+#include <cstring>
 #include <new>
 
 namespace Mechanika

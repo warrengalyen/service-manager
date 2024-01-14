@@ -34,9 +34,9 @@ namespace Mechanika
 #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
 			HANDLE MxWinWaitEvent;
 #else
-			sem_t *MxSemWaitMutex, *MxSemWaitEvent, *MxSemWaitCount, *MxSemWaitStatus;
-			bool MxAllocated;
-			bool MxManual;
+			bool MxNamed;
+			char *MxMem;
+			Util::UnixEventWrapper MxPthreadEvent;
 #endif
 		};
 	}

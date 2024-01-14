@@ -1910,7 +1910,7 @@ int main(int argc, char **argv)
 			else if (TempPID == 0)
 			{
 				StaticMixedVar<char[8192]> TempBuffer;
-				TempBuffer.SetStr("/Library/LaunchDaemons/com.servicemanager.")
+				TempBuffer.SetStr("/Library/LaunchDaemons/com.servicemanager.");
 				TempBuffer.AppendStr(GxApp.MxServiceName);
 				TempBuffer.AppendStr(".plist");
 
@@ -2052,7 +2052,7 @@ int main(int argc, char **argv)
 			else if (TempPID == 0)
 			{
 				StaticMixedVar<char[8192]> TempBuffer;
-				TempBuffer.SetStr("/Library/LaunchDaemons/com.servicemanager.")
+				TempBuffer.SetStr("/Library/LaunchDaemons/com.servicemanager.");
 				TempBuffer.AppendStr(GxApp.MxServiceName);
 				TempBuffer.AppendStr(".plist");
 

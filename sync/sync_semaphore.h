@@ -46,8 +46,9 @@ namespace Mechanika
 #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
 			HANDLE MxWinSemaphore;
 #else
-			sem_t *MxSemSemaphore;
-			bool MxAllocated;
+			bool MxNamed;
+			char *MxMem;
+			Util::UnixSemaphoreWrapper MxPthreadSemaphore;
 #endif
 		};
 	}

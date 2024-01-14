@@ -650,6 +650,17 @@ public:
 		return MxDataPos;
 	}
 
+private:
+	static size_t GetObjectSize(const T *Obj)
+	{
+		size_t y;
+
+		for (y = 0; Obj[y]; y++) {}
+
+		return y;
+	}
+
+public:
 	// Replaces all exact instances of Pattern with ReplaceWith in Data up to Limit with a single function call into a dynamically allocated output buffer.
 	// Check out Sync::TLS for a higher-performance allocator.
 #ifdef MECHANIKA_FAST_FIND_REPLACE_MEMALLOC
@@ -658,7 +669,7 @@ public:
 	{
 		FastReplaceAllocCompare<T, AllocType, ElementsEqualType> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize, AltMallocManager, ElementsEqual);
 	#else
@@ -666,7 +677,7 @@ public:
 	{
 		FastReplaceAlloc<T, AllocType> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize, AltMallocManager);
 	#endif
@@ -676,7 +687,7 @@ public:
 	{
 		FastReplaceCompare<T, ElementsEqualType> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize, ElementsEqual);
 	#else
@@ -684,13 +695,13 @@ public:
 	{
 		FastReplace<T> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize);
 	#endif
 #endif
 
-		if (ReplaceWithSize == (size_t)-1)  ReplaceWithSize = strlen(ReplaceWith);
+		if (ReplaceWithSize == (size_t)-1)  ReplaceWithSize = GetObjectSize(ReplaceWith);
 
 		if (PatternSize < ReplaceWithSize && GrowthSize < (ReplaceWithSize - PatternSize) * 50)  GrowthSize = (ReplaceWithSize - PatternSize) * 50;
 		TempReplace.SetGrowthSize(GrowthSize);
@@ -726,7 +737,7 @@ public:
 	{
 		FastReplaceAllocCompare<T, AllocType, ElementsEqualType> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize, AltMallocManager, ElementsEqual);
 	#else
@@ -734,7 +745,7 @@ public:
 	{
 		FastReplaceAlloc<T, AllocType> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize, AltMallocManager);
 	#endif
@@ -744,7 +755,7 @@ public:
 	{
 		FastReplaceCompare<T, ElementsEqualType> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize, ElementsEqual);
 	#else
@@ -752,13 +763,13 @@ public:
 	{
 		FastReplace<T> TempReplace;
 
-		if (PatternSize == (size_t)-1)  PatternSize = strlen(Pattern);
+		if (PatternSize == (size_t)-1)  PatternSize = GetObjectSize(Pattern);
 
 		TempReplace.SetPattern(Pattern, PatternSize);
 	#endif
 #endif
 
-		if (ReplaceWithSize == (size_t)-1)  ReplaceWithSize = strlen(ReplaceWith);
+		if (ReplaceWithSize == (size_t)-1)  ReplaceWithSize = GetObjectSize(ReplaceWith);
 
 		if (PatternSize < ReplaceWithSize && GrowthSize < (ReplaceWithSize - PatternSize) * 50)  GrowthSize = (ReplaceWithSize - PatternSize) * 50;
 		TempReplace.SetGrowthSize(GrowthSize);

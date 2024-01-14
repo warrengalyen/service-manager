@@ -11,7 +11,7 @@
 #else
 	#include <wchar.h>
 
-	#ifdef WCHAR
+	#ifndef WCHAR
 		#define WCHAR wchar_t
 	#endif
 #endif
